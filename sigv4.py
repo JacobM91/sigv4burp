@@ -7,7 +7,6 @@ from burp import IBurpExtenderCallbacks
 from java.io import PrintWriter
 from datetime import datetime
 from javax import swing
-from java import awt
 import java.lang as lang
 from java.awt import Color
 from java.awt import Font
@@ -18,7 +17,7 @@ import copy
 import urlparse
 import json
 
-#hack for windows and ubuntu
+#hack for windows environment, if you run it on windows make sure to put both files on the same directory. (work is just example).
 sys.path.insert(0, 'c:/work/')
 import signer
 
@@ -57,7 +56,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener, ITab):
 
         if messageIsRequest: 
             requestInfo = self._helpers.analyzeRequest(messageInfo)
-            if not 'magicleap' in requestInfo.getUrl().getHost():
+            if not 'example.com' in requestInfo.getUrl().getHost():
                 return
 
             request_parameters = self.getQueryString(requestInfo.getUrl().getQuery())
@@ -88,7 +87,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IProxyListener, ITab):
         self.credsText = swing.JTextArea("Paste Creds Here.")
         self.credsText.setLineWrap(True)
         self.credsPanel.setViewportView(self.credsText)
-        self.scopeUrlField = swing.JTextField("api.magicleap.io")
+        self.scopeUrlField = swing.JTextField("api.example.io")
 
         layout.setHorizontalGroup(
             layout.createParallelGroup(swing.GroupLayout.Alignment.LEADING)
